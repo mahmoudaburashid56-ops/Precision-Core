@@ -1,4 +1,5 @@
 {
+  
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
@@ -24,6 +25,15 @@
   "devDependencies": {
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.10",
-    "tailwindcss": "^4.2.2"
-  }
+    "tailwindcss": "^4.2.2",
+    "vite": "^8.0.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahmoudaburashid56-ops/Precision-Core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mahmoudaburashid56-ops/Precision-Core/issues"
+  },
+  "homepage": "https://github.com/mahmoudaburashid56-ops/Precision-Core#readme"
 }
