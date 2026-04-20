@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+
+    <title>Precision Core | ذكاء وأمان - خدمات هندسية وتقنية في عمان</title>
+
+<meta name="description" content="بريسيجن كور توفر حلولاً هندسية متكاملة، من تصميم المواقع والأنظمة الذكية إلى خدمات الأمان والبرمجة في الأردن.">
+
+<meta name="keywords" content="تصميم مواقع عمان, خدمات هندسية الأردن, Precision Core, برمجة انظمة ذكية, تطوير برمجيات, ذكاء وأمان, بريسيجن كور">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision Core | ذكاء وأمان</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+
+        
+
+
+/* توهج المسارات عند التفاعل */
+.system-path {
+    transition: all 0.5s ease;
+    border: 1px solid rgba(147, 51, 234, 0.1);
+}
+
+.active-path {
+    border-color: #9333ea !important;
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.4);
+    background: rgba(147, 51, 234, 0.05);
+}
+
+/* حركة بسيطة للمعالج عند مرور الماوس */
+.group:hover .relative {
+    transform: rotateX(10deg) rotateY(10deg);
+    transition: transform 0.5s ease;
+}
+        
+        @keyframes radar-spin {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.animate-radar-spin {
+    animation: radar-spin 4s linear infinite;
+}
+
+.radar-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #a855f7;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 8px #a855f7);
+}
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #060910;
+            margin: 0;
+            overflow-x: hidden;
+            font-family: 'Tajawal', sans-serif;
+            color: #0c69e2; /* رمادي فاتح جداً بديل للأسود */
+        }
+
+        /* خلفية الشبكة الهندسية */
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        .bg-animate {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 50% 50%, #111029 0%, #060910 100%);
+        }
+
+        .blob {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: rgba(139, 92, 246, 0.1);
+            filter: blur(100px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+       .gradient-text {
+    /* التدرج اللوني الأساسي */
+    background: linear-gradient(90deg, #ddd6fe, #60a5fa, #ddd6fe);
+    background-size: 200% auto;
+
+    /* تفعيل التدرج داخل النص لجميع المتصفحات */
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+
+    /* جعل لون النص الأصلي شفافاً ليظهر التدرج خلفه */
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* كدعم إضافي */
+
+    /* حركة اللمعان التي أضفناها سابقاً */
+    animation: shine 4s linear infinite;
+} 
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .service-img {
+            transition: transform 0.7s ease;
+            filter: grayscale(30%) brightness(0.8);
+        }
+        .glass-card:hover .service-img {
+            transform: scale(1.1) rotate(2deg);
+            filter: grayscale(0%) brightness(1);
+        }
+        /* تنسيقات الـ FAQ */
+.faq-item.active {
+    border-color: rgba(147, 51, 234, 0.5);
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.1);
+}
+
+/* هذا الجزء يجعل الإجابة تظهر عند إضافة class "active" */
+.faq-item.active .faq-answer {
+    max-height: 500px; /* أعطيناه قيمة كبيرة تسمح للنص بالظهور */
+    padding-bottom: 24px; /* مسافة جمالية في الأسفل */
+    opacity: 1;
+}
+
+/* تأكد أيضاً أن الـ faq-answer لديه هذه الخصائص الافتراضية */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    /* تنسيق أيقونات التواصل الاجتماعي في الفوتر */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem; /* تعادل p-2 */
+    border-radius: 0.75rem; /* تعادل rounded-xl */
+    background-color: rgba(255, 255, 255, 0.05); /* تعادل bg-white/5 */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* تعادل border-white/5 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* حركة ناعمة */
+}
+
+.social-link:hover {
+    transform: translateY(-0.25rem); /* تحريك للأعلى تعادل -translate-y-1 */
+    background-color: rgba(255, 255, 255, 0.1); /* تعادل bg-white/10 */
+    border-color: rgba(255, 255, 255, 0.2); /* تعادل border-white/20 */
+    /* توهج بنفسجي يتناسب مع هوية Precision Core */
+    box-shadow: 0 10px 20px -10px rgba(147, 51, 234, 0.3); 
+}
+}
+    </style>
+</head>
+<body>
+
+    
+    
+
+    <div class="grid-bg"></div>
+    <div class="bg-animate"><div class="blob"></div></div>
+
+    <nav class="flex justify-between items-center px-10 py-6 border-b border-white/10 backdrop-blur-md sticky top-0 z-50">
+        <div id="logo-container" class="flex items-center gap-3 cursor-pointer select-none">
+            <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-500 rounded-lg flex items-center justify-center font-bold text-white shadow-lg">P</div>
+            <span class="text-2xl font-black tracking-tighter text-white uppercase">PRECISION <span class="text-purple-500 text-shadow-glow">CORE</span></span>
+        </div>
+        <div class="hidden md:flex items-center gap-10">
+            <a href="#" class="text-gray-300 hover:text-purple-400 transition text-sm font-bold tracking-widest">HOME</a>
+            <a href="#contact" class="bg-purple-600 text-white px-8 py-2.5 rounded-full font-bold hover:bg-purple-500 transition-all shadow-lg transform hover:scale-105">CONTACT US</a>
+        </div>
+    </nav>
+    
+
+    <main class="pt-24 px-6 overflow-hidden">
+        <section class="flex flex-col items-center text-center mb-32">
+            <h1 class="text-6xl md:text-8xl font-black text-white mb-8 leading-tight" data-aos="fade-up">
+                نصمم مستقبلك الرقمي <br>
+                <span class="gradient-text">بأعلى معايير الدقة</span>
+            </h1>
+            <p class="text-gray-400 text-xl max-w-3xl mb-12" data-aos="fade-up" data-aos-delay="200">
+                نحن لا نبني برمجيات فقط، بل ننشئ حصوناً رقمية وواجهات تفيض بالذكاء، حيث الدقة في التنفيذ هي جوهر هويتنا.
+            </p>
+            <div class="flex gap-6" data-aos="fade-up" data-aos-delay="400">
+                <a href="#contact" class="px-12 py-4 bg-purple-600 text-white rounded-full font-bold hover:shadow-purple-500/40 hover:shadow-2xl transition-all">ابدأ رحلتك</a>
+                <a href="#services" class="px-12 py-4 bg-white/5 text-gray-200 border border-white/10 rounded-full font-bold hover:bg-white/10 transition-all">اكتشف خدماتنا</a>
+            </div>
+        </section>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 px-6">
+    <div class="glass-card p-6 rounded-2xl border border-white/5 relative overflow-hidden group">
+        <div class="flex justify-between items-center relative z-10">
+            <div>
+                <p class="text-gray-400 text-xs font-bold uppercase tracking-wider">CPU Usage</p>
+                <h3 id="cpu-load" class="text-2xl font-black text-white mt-1 transition-all">12%</h3>
+            </div>
+            <div class="p-3 bg-purple-500/10 rounded-xl text-purple-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002-2z"></path></svg>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 h-1 bg-purple-500 transition-all duration-1000" id="cpu-bar" style="width: 12%"></div>
+    </div>
+
+    <div class="glass-card p-6 rounded-2xl border border-white/5 relative overflow-hidden">
+        <div class="flex justify-between items-center relative z-10">
+            <div>
+                <p class="text-gray-400 text-xs font-bold uppercase tracking-wider">Memory Status</p>
+                <h3 id="mem-load" class="text-2xl font-black text-white mt-1">450MB / 1GB</h3>
+            </div>
+            <div class="p-3 bg-blue-500/10 rounded-xl text-blue-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 h-1 bg-blue-500" style="width: 45%"></div>
+    </div>
+
+    <div class="glass-card p-6 rounded-2xl border border-white/5 relative overflow-hidden">
+        <div class="flex justify-between items-center relative z-10">
+            <div>
+                <p class="text-gray-400 text-xs font-bold uppercase tracking-wider">Server Uptime</p>
+                <h3 class="text-2xl font-black text-green-400 mt-1">99.99%</h3>
+            </div>
+            <div class="p-3 bg-green-500/10 rounded-xl text-green-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 h-1 bg-green-500" style="width: 100%"></div>
+    </div>
+</div>
+
+        <section id="services" class="max-w-7xl mx-auto space-y-32 mb-40">
+            
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-left">
+                    <span class="text-purple-500 font-bold tracking-widest uppercase mb-4 block text-sm">01. Engineering Excellence</span>
+                    <h2 class="text-4xl font-black text-white mb-6">الدقة المتناهية في التنفيذ</h2>
+                    <p class="text-gray-400 leading-relaxed text-lg mb-8">
+                        في Precision Core، الدقة ليست مجرد كلمة، بل هي عملية تبدأ من التخطيط الهندسي وتنتهي بكود نظيف (Clean Code) خالٍ من العيوب، لضمان أداء خارق وسهولة في التوسع المستقبلي.
+                    </p>
+                    <div class="flex items-center gap-4 text-purple-400 font-bold">
+                        <span class="w-12 h-[2px] bg-purple-500"></span>
+                        نركز على أدق التفاصيل التقنية
+                    </div>
+                </div>
+                <div class="glass-card rounded-[2rem] overflow-hidden p-3" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" class="service-img rounded-2xl w-full h-[400px] object-cover" alt="Precision Work">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 glass-card rounded-[2rem] overflow-hidden p-3" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000" class="service-img rounded-2xl w-full h-[400px] object-cover" alt="Coding Technologies">
+                </div>
+                <div class="order-1 md:order-2" data-aos="fade-right">
+                    <span class="text-blue-500 font-bold tracking-widest uppercase mb-4 block text-sm">02. Modern Stack</span>
+                    <h2 class="text-4xl font-black text-white mb-6">برمجيات متطورة بأحدث التقنيات</h2>
+                    <p class="text-gray-400 leading-relaxed text-lg mb-6">
+                        نستخدم أحدث أطر العمل العالمية لبناء تطبيقات المواقع والهواتف الذكية، مما يمنحك سرعة فائقة وتوافقاً تاماً مع جميع الأجهزة.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-center text-blue-400 font-bold">Next.js / React</div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-center text-purple-400 font-bold">Flutter / Mobile</div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-center text-green-400 font-bold">Node.js Backend</div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-center text-pink-400 font-bold">Python / AI</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-left">
+                    <span class="text-red-500 font-bold tracking-widest uppercase mb-4 block text-sm">03. Fortified Security</span>
+                    <h2 class="text-4xl font-black text-white mb-6">أنظمة حماية فولاذية</h2>
+                    <p class="text-gray-400 leading-relaxed text-lg mb-8">
+                        أمان موقعك هو خطنا الأحمر. نطبق أقوى بروتوكولات الحماية ضد الاختراقات، وهجمات DDoS، ونقوم بفحص دوري للثغرات الأمنية لضمان بقاء عملك في أمان تام.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            تشفير بيانات عالي المستوى (End-to-End)
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            حماية ضد هجمات الـ Injection و Cross-site
+                        </li>
+                    </ul>
+                </div>
+                <div class="glass-card rounded-[2rem] overflow-hidden p-3" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" class="service-img rounded-2xl w-full h-[400px] object-cover" alt="Cyber Security">
+                </div>
+            </div>
+
+            <div class="glass-card rounded-[3rem] p-12 relative overflow-hidden" data-aos="fade-up">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/10 blur-[100px]"></div>
+                <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <span class="text-blue-400 font-bold tracking-widest uppercase mb-4 block text-sm">04. Data Sovereignty</span>
+                        <h2 class="text-4xl font-black text-white mb-6">قواعد بيانات بخصوصية مطلقة</h2>
+                        <p class="text-gray-400 leading-relaxed text-lg mb-6">
+                            نحن نقدس خصوصية بيانات عملائنا. نعتمد على قواعد بيانات مشفرة وموزعة تضمن عدم ضياع المعلومات أو تسريبها، مع توفير نسخ احتياطي تلقائي وفوري.
+                        </p>
+                        <div class="flex gap-4">
+                            <div class="bg-blue-500/20 border border-blue-500/30 px-6 py-2 rounded-full text-blue-400 text-sm font-bold">Mongo DB</div>
+                            <div class="bg-blue-500/20 border border-blue-500/30 px-6 py-2 rounded-full text-blue-400 text-sm font-bold">PostgreSQL</div>
+                            <div class="bg-blue-500/20 border border-blue-500/30 px-6 py-2 rounded-full text-blue-400 text-sm font-bold">SQL Encryption</div>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                      <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=1000" 
+                          class="w-full h-64 object-cover"   alt="Database Servers">
+                        </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="workflow" class="py-32 px-6 max-w-6xl mx-auto">
+    <div class="text-center mb-20" data-aos="fade-up">
+        <span class="text-purple-500 font-bold tracking-widest uppercase mb-4 block text-sm">Our Process</span>
+        <h2 class="text-5xl font-black text-white mb-6">كيف نحول فكرتك إلى <span class="text-gradient">واقع رقمي؟</span></h2>
+    </div>
+
+    <div class="relative">
+        <div class="absolute right-1/2 transform translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-purple-600 via-blue-500 to-transparent hidden md:block"></div>
+
+        <div class="relative flex flex-col md:flex-row items-center mb-24" data-aos="fade-right">
+            <div class="flex-1 md:text-left md:pr-12 mb-8 md:mb-0">
+                <div class="glass-card p-8 rounded-3xl inline-block w-full">
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                        <span class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-sm">01</span>
+                        التحليل الهندسي
+                    </h3>
+                    <p class="text-gray-400">نقوم بتشريح المتطلبات بعمق هندسي، وتصميم هيكلية النظام (System Architecture) لضمان أساس متين وقابل للتوسع.</p>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-purple-600 rounded-full border-4 border-[#060910] z-10 hidden md:flex items-center justify-center shadow-[0_0_20px_rgba(147,51,234,0.5)]">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+            </div>
+            <div class="flex-1 md:pl-12 hidden md:block"></div>
+        </div>
+
+        <div class="relative flex flex-col md:flex-row items-center mb-24" data-aos="fade-left">
+            <div class="flex-1 md:pr-12 hidden md:block"></div>
+            <div class="w-12 h-12 bg-blue-500 rounded-full border-4 border-[#060910] z-10 hidden md:flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+            </div>
+            <div class="flex-1 md:text-right md:pl-12">
+                <div class="glass-card p-8 rounded-3xl inline-block w-full">
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3 md:justify-end">
+                        التطوير السريع (Agile)
+                        <span class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-sm">02</span>
+                    </h3>
+                    <p class="text-gray-400">نبدأ مرحلة "التكويد" باستخدام منهجية Agile، مما يتيح لك رؤية التطورات أولاً بأول مع الالتزام بأعلى معايير الدقة البرمجية.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative flex flex-col md:flex-row items-center mb-24" data-aos="fade-right">
+            <div class="flex-1 md:text-left md:pr-12 mb-8 md:mb-0">
+                <div class="glass-card p-8 rounded-3xl inline-block w-full">
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                        <span class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-sm">03</span>
+                        اختبار الاختراق (Pentesting)
+                    </h3>
+                    <p class="text-gray-400">قبل التسليم، نقوم بمحاكاة هجمات حقيقية على النظام لفحص الثغرات وضمان أن موقعك حصن رقمي لا يمكن اختراقه.</p>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-red-600 rounded-full border-4 border-[#060910] z-10 hidden md:flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.5)]">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            <div class="flex-1 md:pl-12 hidden md:block"></div>
+        </div>
+
+        <div class="relative flex flex-col md:flex-row items-center" data-aos="fade-left">
+            <div class="flex-1 md:pr-12 hidden md:block"></div>
+            <div class="w-12 h-12 bg-green-500 rounded-full border-4 border-[#060910] z-10 hidden md:flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.5)]">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <div class="flex-1 md:text-right md:pl-12">
+                <div class="glass-card p-8 rounded-3xl inline-block w-full">
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3 md:justify-end">
+                        الإطلاق والدعم المستمر
+                        <span class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-sm">04</span>
+                    </h3>
+                    <p class="text-gray-400">نشرف على عملية الإطلاق في الخوادم العالمية، ونبقى معك لمراقبة الأداء وضمان استقرار الخدمة على مدار الساعة.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-20 px-6 max-w-7xl mx-auto relative">
+    <div class="absolute inset-0 bg-purple-600/5 blur-[120px] rounded-full pointer-events-none"></div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+        
+        <div class="glass-card p-10 rounded-[2.5rem] text-center group" data-aos="zoom-in" data-aos-delay="100">
+            <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-purple-500/30 group-hover:scale-110 transition-transform">
+                <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <div class="text-5xl font-black text-white mb-2 flex justify-center items-center gap-1">
+                <span>+</span>
+                <span class="counter" data-target="100">0</span>
+            </div>
+            <p class="text-gray-400 font-bold tracking-wide uppercase text-sm">مشروع تم تأمينه بنجاح</p>
+        </div>
+
+        <div class="glass-card p-10 rounded-[2.5rem] text-center group" data-aos="zoom-in" data-aos-delay="200">
+            <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-500/30 group-hover:scale-110 transition-transform">
+                <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <div class="text-5xl font-black text-white mb-2 flex justify-center items-center gap-1">
+                <span class="counter" data-target="99.9">0</span>
+                <span>%</span>
+            </div>
+            <p class="text-gray-400 font-bold tracking-wide uppercase text-sm">استقرار في الخوادم (Uptime)</p>
+        </div>
+
+        <div class="glass-card p-10 rounded-[2.5rem] text-center group" data-aos="zoom-in" data-aos-delay="300">
+            <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-green-500/30 group-hover:scale-110 transition-transform">
+                <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </div>
+            <div class="text-5xl font-black text-white mb-2">
+                <span class="counter" data-target="0">0</span>
+            </div>
+            <p class="text-gray-400 font-bold tracking-wide uppercase text-sm">ثغرات أمنية مكتشفة</p>
+        </div>
+
+    </div>
+</section>
+
+<div class="glass-card p-8 rounded-3xl border border-white/5 relative flex flex-col items-center justify-center overflow-hidden h-[400px]">
+    <h3 class="text-white font-bold mb-6 self-start flex items-center gap-2">
+        <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+        </span>
+        Global Traffic Radar
+    </h3>
+
+    <div id="radar-container" class="relative w-64 h-64 rounded-full border border-purple-500/30 bg-purple-500/5 flex items-center justify-center">
+        <div class="absolute w-48 h-48 rounded-full border border-purple-500/20"></div>
+        <div class="absolute w-32 h-32 rounded-full border border-purple-500/10"></div>
+        
+        <div class="absolute w-1/2 h-[2px] bg-gradient-to-r from-transparent to-purple-500 origin-left animate-radar-spin left-1/2 top-1/2 -translate-y-1/2"></div>
+        
+        <div class="absolute w-full h-[1px] bg-purple-500/10"></div>
+        <div class="absolute h-full w-[1px] bg-purple-500/10"></div>
+
+        <div id="radar-dots-container" class="absolute inset-0"></div>
+    </div>
+
+    <div id="location-tag" class="mt-6 font-mono text-[10px] text-purple-400 opacity-0 transition-opacity duration-500">
+        SCANNING GLOBAL TRAFFIC...
+    </div>
+</div>
+
+
+
+<section id="faq" class="py-32 px-6 max-w-4xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-black text-white mb-4">الأسئلة <span class="text-gradient">الشائعة</span></h2>
+        <p class="text-gray-400">كل ما تحتاج معرفته عن دقة تنفيذ مشاريعنا</p>
+    </div>
+
+    <div class="space-y-4">
+        <div class="faq-item glass-card rounded-2xl overflow-hidden transition-all duration-300">
+            <button class="faq-btn w-full p-6 text-right flex justify-between items-center group">
+                <span class="text-white font-bold text-lg">كم يستغرق بناء التطبيق؟</span>
+                <span class="faq-icon text-purple-400 transition-transform duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                </span>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                <div class="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5">
+                    تعتمد المدة الزمنية على حجم الهيكلية المطلوبة (System Architecture)، ولكن بفضل منهجية التطوير السريع (Agile) التي نتبعها، يستغرق بناء النموذج الأولي القابل للاختبار (MVP) عادةً من 3 إلى 6 أسابيع، مع ضمان تسليم أجزاء وظيفية بشكل دوري لمراجعتها.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item glass-card rounded-2xl overflow-hidden transition-all duration-300">
+            <button class="faq-btn w-full p-6 text-right flex justify-between items-center group">
+                <span class="text-white font-bold text-lg">كيف تضمنون خصوصية البيانات؟</span>
+                <span class="faq-icon text-purple-400 transition-transform duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                </span>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                <div class="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5">
+                    نحن نتبع معايير هندسية صارمة؛ حيث يتم تشفير البيانات الحساسة باستخدام بروتوكول AES-256، ونعتمد على قواعد بيانات موزعة تضمن عدم ضياع المعلومات أو تسريبها. كما نقوم بإجراء اختبارات اختراق (Penetration Testing) دورية لسد أي ثغرة أمنية محتملة.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item glass-card rounded-2xl overflow-hidden transition-all duration-300">
+            <button class="faq-btn w-full p-6 text-right flex justify-between items-center group">
+                <span class="text-white font-bold text-lg">هل تقدمون دعماً فنياً بعد البرمجة؟</span>
+                <span class="faq-icon text-purple-400 transition-transform duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                </span>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                <div class="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5">
+                    بكل تأكيد، نوفر باقات دعم فني تشمل مراقبة أداء الخوادم (Server Monitoring)، وتحديث المكتبات البرمجية لضمان الأمان، وحل أي مشكلات تقنية فور ظهورها لضمان استقرار الخدمة بنسبة 99.9% على مدار الساعة.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="glass-card p-4 rounded-3xl border border-white/5 flex flex-col items-center justify-center w-48 h-48 relative group">
+    <div class="text-[10px] text-purple-400 font-mono mb-2 uppercase tracking-widest">Precision Core v1.0</div>
+    
+    <div class="relative w-20 h-20 bg-[#1a1a1a] border-4 border-purple-500/30 rounded-lg shadow-[0_0_30px_rgba(147,51,234,0.2)] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#9333ea_1px,transparent_1px)] [background-size:10px_10px]"></div>
+        <div class="w-8 h-8 bg-purple-500/20 border border-purple-500/50 rounded sm shadow-inner animate-pulse"></div>
+        
+        <div class="absolute top-0 w-full h-1 flex justify-around px-2"><span class="w-1 h-1 bg-purple-500/40"></span><span class="w-1 h-1 bg-purple-500/40"></span><span class="w-1 h-1 bg-purple-500/40"></span></div>
+        <div class="absolute bottom-0 w-full h-1 flex justify-around px-2"><span class="w-1 h-1 bg-purple-500/40"></span><span class="w-1 h-1 bg-purple-500/40"></span><span class="w-1 h-1 bg-purple-500/40"></span></div>
+    </div>
+
+    <div class="mt-4 flex items-center gap-2">
+        <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
+        <span class="text-white font-mono text-[10px]">SYSTEM LINKED</span>
+    </div>
+</div>
+<section id="contact" class="py-32 px-6 w-full max-w-4xl mx-auto" data-aos="fade-up">
+    <div class="glass-card p-12 rounded-[2.5rem]">
+        <h2 class="text-4xl font-black text-white mb-8 text-center">أخبرنا عن <span class="text-purple-500">مشروعك</span></h2>
+        
+        <form id="precisionForm" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex flex-col text-right">
+                <label class="text-gray-400 mb-3 font-bold">الاسم الكامل</label>
+                <input type="text" id="visitor_name" name="visitor_name" required 
+                    style="background-color: #000000; color: white; border: 1px solid #7e2dd3;" 
+                    class="rounded-2xl p-5" placeholder="علي محمد">
+            </div>
+
+            <div class="flex flex-col text-right">
+                <label class="text-gray-400 mb-3 font-bold">اسم الشركة</label>
+                <input type="text" id="company_name" name="company_name" 
+                    style="background-color: #000000; color: white; border: 1px solid #7e2dd3;" 
+                    class="rounded-2xl p-5" placeholder="Precision Core">
+            </div>
+
+            <div class="flex flex-col text-right">
+                <label class="text-gray-400 mb-3 font-bold">البريد الإلكتروني</label>
+                <input type="email" id="visitor_email" name="visitor_email" required 
+                    style="background-color: #000000; color: white; border: 1px solid #7e2dd3;" 
+                    class="rounded-2xl p-5" placeholder="email@example.com">
+            </div>
+
+            <div class="flex flex-col text-right">
+                <label class="text-gray-400 mb-3 font-bold">رقم الهاتف</label>
+                <input type="tel" id="visitor_phone" name="visitor_phone" required 
+                    style="background-color: #000000; color: white; border: 1px solid #7e2dd3;" 
+                    class="rounded-2xl p-5" placeholder="07XXXXXXXX">
+            </div>
+
+            <div class="flex flex-col text-right md:col-span-2">
+                <label class="text-gray-400 mb-3 font-bold">تفاصيل المشروع</label>
+                <textarea id="project_details" name="project_details" rows="5" required 
+                    style="background-color: #000000; color: white; border: 1px solid #7e2dd3;" 
+                    class="rounded-2xl p-5" placeholder="اشرح لنا فكرة مشروعك..."></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="md:col-span-2 bg-purple-600 text-white font-bold py-5 rounded-2xl transition-all hover:bg-purple-700">
+                إرسال الطلب
+            </button>
+        </form>
+
+        <div id="responseMessage" class="mt-8 text-center hidden text-green-400 font-bold text-lg"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+    (function() {
+        emailjs.init("5mfIP4fXQJKuo4rNB"); 
+    })();
+
+    document.getElementById('precisionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const btn = document.getElementById('submitBtn');
+        const successMsg = document.getElementById('responseMessage');
+        
+        btn.innerText = "جاري الإرسال...";
+        btn.disabled = true;
+
+        // سحب القيم يدوياً لضمان وصولها لـ EmailJS وللوحتك مستقبلاً
+        const templateParams = {
+            visitor_name: document.getElementById('visitor_name').value,
+            company_name: document.getElementById('company_name').value,
+            visitor_email: document.getElementById('visitor_email').value,
+            visitor_phone: document.getElementById('visitor_phone').value,
+            project_details: document.getElementById('project_details').value
+        };
+
+        // 1. الإرسال لـ EmailJS
+        emailjs.send('percision.core', 'template_jv336p2', templateParams)
+            .then(function() {
+                successMsg.innerText = "✓ تم استلام طلبك بنجاح. سيتم التواصل معك قريباً.";
+                successMsg.classList.remove('hidden');
+                document.getElementById('precisionForm').reset();
+                btn.innerText = "إرسال الطلب";
+                btn.disabled = false;
+                
+                // هنا مستقبلاً يمكنك إضافة كود لإرسال البيانات إلى قاعدة بيانات لوحتك (Dashboard)
+            }, function(error) {
+                alert("فشل النظام: " + JSON.stringify(error));
+                btn.innerText = "إعادة المحاولة";
+                btn.disabled = false;
+            });
+    });
+</script>
+        
+    </main>
+
+   <footer class="py-12 px-6 border-t border-white/5 bg-[#060910]/80 backdrop-blur-lg">
+    <div class="max-w-6xl mx-auto flex flex-col items-center gap-8">
+        
+        <div class="flex items-center gap-6">
+            
+            <a href="https://www.facebook.com/share/1BcH4ztdYy/?mibextid=wwXIfr" target="_blank" class="social-link group" title="Facebook">
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-blue-500 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                </svg>
+            </a>
+            
+            <a href="https://www.instagram.com/mahmoud_aburashid_k02?igsh=djVmYjIyZTVmeDkw&utm_source=qr" target="_blank" class="social-link group" title="Instagram">
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-pink-500 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/mahmoud-aburashid-58852825a/" target="_blank" class="social-link group" title="LinkedIn">
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+            </a>
+
+            <a href="mailto:mahmoudaburashid56@gmail.com" class="social-link group" title="Email">
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+            </a>
+        </div>
+
+        <div class="text-center">
+            <p class="text-gray-500 text-sm tracking-widest font-medium">
+                © Precision Core 2026. جميع الحقوق محفوظة.
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        function updateSystemMetrics() {
+    // 1. تحديث عشوائي للمعالج (بين 8% و 25%)
+    const cpuValue = Math.floor(Math.random() * (50 - 8 + 1)) + 8;
+    const cpuLoadText = document.getElementById('cpu-load');
+    const cpuBar = document.getElementById('cpu-bar');
+    
+    if(cpuLoadText && cpuBar) {
+        cpuLoadText.innerText = `${cpuValue}%`;
+        cpuBar.style.width = `${cpuValue}%`;
+    }
+
+    // 2. تحديث عشوائي للذاكرة (بين 440 و 480 ميجابايت)
+    const memValue = Math.floor(Math.random() * (676 - 350 + 1)) + 440;
+    const memText = document.getElementById('mem-load');
+    if(memText) {
+        memText.innerText = `${memValue}MB / 1GB`;
+    }
+}
+
+// تشغيل التحديث كل 3 ثوانٍ لإعطاء طابع "السرعة"
+setInterval(updateSystemMetrics, 3000);
+        AOS.init({ duration: 1000, once: false, mirror: true });
+
+        document.addEventListener('mousemove', (e) => {
+            const blob = document.querySelector('.blob');
+            blob.animate({
+                left: `${e.clientX - 300}px`,
+                top: `${e.clientY - 300}px`
+            }, { duration: 1500, fill: "forwards" });
+        });
+
+        const contactForm = document.getElementById('precisionForm');
+        const responseMsg = document.getElementById('responseMessage');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            responseMsg.classList.remove('hidden');
+            responseMsg.innerText = "شكرًا لتواصلك مهندس! تم استلام طلبك بأمان وسنقوم بالرد عليك قريبًا.";
+            contactForm.reset();
+        });
+
+        // التوجه للوحدة السرية
+        const logo = document.getElementById('logo-container');
+        let pressTimer;
+        logo.addEventListener('mousedown', () => {
+            pressTimer = window.setTimeout(() => {
+                const secretKey = prompt("أدخل رمز الوصول لـ Precision Core Vault:");
+                if (secretKey === "admin123") window.location.href = "core-vault.html";
+            }, 3000); 
+        });
+        logo.addEventListener('mouseup', () => clearTimeout(pressTimer));
+        // وظيفية العداد الذكي (Animated Counter)
+const counters = document.querySelectorAll('.counter');
+const speed = 200; // سرعة الحركة
+
+const startCounters = () => {
+    counters.forEach(counter => {
+        const animate = () => {
+            const value = +counter.getAttribute('data-target');
+            const data = +counter.innerText;
+            const time = value / speed;
+
+            if (data < value) {
+                counter.innerText = Math.ceil(data + time);
+                setTimeout(animate, 10);
+            } else {
+                counter.innerText = value;
+            }
+        };
+        // معالجة خاصة لنسبة 99.9%
+        if(counter.getAttribute('data-target') === "99.9") {
+            counter.innerText = "99.9";
+        } else {
+            animate();
+        }
+    });
+};
+
+// تفعيل الحركة فقط عندما يصل المستخدم للقسم
+let done = false;
+window.addEventListener('scroll', () => {
+    const statsSection = document.querySelector('.counter')?.getBoundingClientRect();
+    if (statsSection && statsSection.top < window.innerHeight && !done) {
+        startCounters();
+        done = true;
+    }
+});
+    </script>
+    <script>
+        // أضف كود الأسئلة الشائعة هنا
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+
+<script>
+    // ... أي أكواد جافا سكريبت سابقة (مثل Chart.js أو FAQ) ...
+
+    // --- كود تشغيل الرادار الجغرافي ---
+    const countries = ['Jordan', 'USA', 'Germany', 'Japan', 'UAE', 'UK', 'Canada', 'India', 'Russia', 'Egypt', 'Syria', 'Australia'];
+    const dotsContainer = document.getElementById('radar-dots-container');
+    const locationTag = document.getElementById('location-tag');
+
+    function createRadarDot() {
+        // نتحقق أولاً أن العناصر موجودة في الصفحة لتجنب أي خطأ برمي
+        if (!dotsContainer || !locationTag) return;
+
+        const dot = document.createElement('div');
+        dot.className = 'radar-dot animate-pulse';
+        
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.random() * 45; 
+        const x = 50 + radius * Math.cos(angle);
+        const y = 50 + radius * Math.sin(angle);
+        
+        dot.style.left = `${x}%`;
+        dot.style.top = `${y}%`;
+        
+        dotsContainer.appendChild(dot);
+        
+        const country = countries[Math.floor(Math.random() * countries.length)];
+        locationTag.innerText = `INCOMING TRAFFIC: ${country.toUpperCase()}`;
+        locationTag.style.opacity = '1';
+
+        setTimeout(() => {
+            dot.style.opacity = '0';
+            setTimeout(() => dot.remove(), 1000);
+        }, 3000);
+    }
+
+    // تشغيل النقطة الأولى فوراً
+    createRadarDot();
+    // تكرار العملية كل 5 ثوانٍ
+    setInterval(createRadarDot, 5000);
+</script>
+
+<script>
+        // ... (هنا تكون أكواد الجافا سكريبت السابقة التي أضفناها) ...
+
+        // --- كود نظام التوأم الرقمي (إضاءة الأقسام عند الضغط) ---
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // 1. إزالة الإضاءة من الأقسام الأخرى أولاً
+                document.querySelectorAll('.glass-card').forEach(c => c.classList.remove('active-path'));
+                
+                // 2. إضافة إضاءة للقسم الحالي (كأنه تم تفعيله من المعالج)
+                this.classList.add('active-path');
+                
+                // 3. رسالة برمجية في الكونسول (للهيبة التقنية)
+                console.log(`> Signal sent to Core: Executing ${this.querySelector('h3')?.innerText || 'Task'}`);
+            });
+        });
+    </script>
+
+</body>
+</html> 

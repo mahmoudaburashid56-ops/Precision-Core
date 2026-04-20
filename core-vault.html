@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Precision Core | Vault</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #060910; color: white; font-family: sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .status-online { color: #4ade80; text-shadow: 0 0 10px rgba(74, 222, 128, 0.3); }
+        .status-offline { color: #f87171; text-shadow: 0 0 10px rgba(248, 113, 113, 0.3); }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-6xl mx-auto">
+        <header class="flex justify-between items-center mb-12">
+            <h1 class="text-3xl font-black">لوحة <span class="text-purple-500">التحكم السرية</span></h1>
+            <a href="index.html" class="text-gray-400 hover:text-white transition">خروج آمن ←</a>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="glass p-6 rounded-2xl">
+                <p class="text-gray-400 text-sm">إجمالي التفاعلات</p>
+                <p id="visitorCount" class="text-4xl font-bold">0</p>
+            </div>
+            <div class="glass p-6 rounded-2xl border-l-4 border-purple-500">
+                <p class="text-gray-400 text-sm">طلبات المشاريع الجديدة</p>
+                <p id="requestCount" class="text-4xl font-bold">0</p>
+            </div>
+            <div class="glass p-6 rounded-2xl">
+                <p class="text-gray-400 text-sm">حالة السيرفر</p>
+                <p id="statusText" class="status-offline font-bold uppercase tracking-widest text-xl">Checking...</p>
+            </div>
+        </div>
+
+        <div class="glass rounded-3xl overflow-hidden shadow-2xl">
+            <table class="w-full text-right">
+                <thead class="bg-white/5 text-gray-400 uppercase text-xs">
+                    <tr>
+                        <th class="p-5">Full Name</th>
+                        <th class="p-5">Company Name</th>
+                        <th class="p-5">Phone Number</th>
+                        <th class="p-5">EMail</th>
+                        <th class="p-5">الإجراء</th>
+                    </tr>
+                </thead>
+                <tbody id="vaultTableBody" class="divide-y divide-white/5">
+                    <tr>
+                        <td colspan="5" class="p-10 text-center text-gray-500 italic">جاري جلب البيانات من الخزنة...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function fetchVaultData() {
+            const tableBody = document.getElementById('vaultTableBody');
+            const requestCount = document.getElementById('requestCount');
+            const visitorCount = document.getElementById('visitorCount');
+            const statusText = document.getElementById('statusText');
+
+            try {
+                const response = await fetch('http://localhost:3000/api/vault');
+                if (!response.ok) throw new Error('Offline');
+                
+                const data = await response.json();
+                
+                statusText.innerText = "Active";
+                statusText.className = "status-online font-bold uppercase tracking-widest text-xl";
+
+                requestCount.innerText = data.length;
+                visitorCount.innerText = (data.length * 2) + 142;
+
+                tableBody.innerHTML = '';
+                if (data.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="5" class="p-10 text-center text-gray-400">الخزنة فارغة حالياً.</td></tr>`;
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = `
+                        <tr class="hover:bg-white/[0.02] transition">
+                            <td class="p-5 font-bold text-white">${item.fullName}</td>
+                            <td class="p-5 text-gray-300">${item.CompanyName || 'شخصي'}</td>
+                            <td class="p-5 text-gray-300">${item.phoneNumber}</td>
+                            <td class="p-5 text-purple-400 text-sm">${item.Email}</td>
+                            <td class="p-5">
+                                <button onclick="showDetails('${item.fullName}', '${item.detailsProject.replace(/'/g, "\\'")}')" 
+                                        class="bg-purple-600/20 text-purple-400 px-4 py-2 rounded-lg hover:bg-purple-600 hover:text-white transition">
+                                    التفاصيل
+                                </button>
+                                <button onclick="deleteEntry('${item._id}')" 
+                                        class="bg-red-600/20 text-red-400 px-4 py-2 rounded-lg hover:bg-red-600 hover:text-white transition mr-2">
+                                    حذف
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+
+            } catch (error) {
+                console.error('Connection Error:', error);
+                statusText.innerText = "Offline";
+                statusText.className = "status-offline font-bold uppercase tracking-widest text-xl";
+                tableBody.innerHTML = `
+                    <tr><td colspan="5" class="p-10 text-center text-red-400">فشل الاتصال بالسيرفر. تأكد من تشغيل ملف server.js</td></tr>
+                `;
+            }
+        }
+
+        async function deleteEntry(id) {
+            if(confirm('هل أنت متأكد من حذف هذا الطلب؟')) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/vault/${id}`, { method: 'DELETE' });
+                    if (response.ok) {
+                        fetchVaultData(); 
+                    } else {
+                        alert("فشل الحذف، تأكد من وجود الـ Route في السيرفر.");
+                    }
+                } catch (error) {
+                    console.error("Delete Error:", error);
+                }
+            }
+        }
+
+        function showDetails(name, details) {
+            alert(`تفاصيل طلب ${name}:\n\n${details}`);
+        }
+
+        window.onload = fetchVaultData;
+        setInterval(fetchVaultData, 30000); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "framer-motion": "^12.38.0",
+    "lottie-react": "^2.4.1",
+    "mongoose": "^9.4.1",
+    "react-tsparticles": "^2.12.2",
+    "tsparticles": "^3.9.1",
+    "tsparticles-engine": "^2.12.0"
+  },
+  "name": "percision-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "firstpage.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.2"
+  }
+}
